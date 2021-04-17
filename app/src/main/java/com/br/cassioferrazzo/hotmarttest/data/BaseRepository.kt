@@ -1,5 +1,7 @@
 package com.br.cassioferrazzo.hotmarttest.data
 
+import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
+import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -13,18 +15,21 @@ abstract class BaseRepository {
                     if (body != null)
                         return ResultWrapper.Success(body)
                 } else {
-                    return ResultWrapper.EmptyResponseError
+                    return ResultWrapper.emptyResponseError
                 }
             }
         } catch (exception: Exception) {
             return when (exception) {
-                is IOException -> ResultWrapper.NetworkError
-                is HttpException -> ResultWrapper.Error(exception.code(), exception.message())
-                else -> ResultWrapper.UnknownError
+                is IOException -> ResultWrapper.networkError
+                is HttpException -> ResultWrapper.Error(exception.toResponseError())
+                else -> ResultWrapper.unknownError
             }
         }
-        return ResultWrapper.UnknownError
+        return ResultWrapper.unknownError
     }
-
-
 }
+
+fun HttpException.toResponseError() = ResponseError(
+    statusCode = this.code(),
+    message = this.message()
+)

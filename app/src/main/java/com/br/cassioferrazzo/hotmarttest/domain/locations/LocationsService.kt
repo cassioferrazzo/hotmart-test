@@ -1,8 +1,8 @@
 package com.br.cassioferrazzo.hotmarttest.domain.locations
 
-import LocationsServiceUseCase
-import com.br.cassioferrazzo.hotmarttest.data.ResultWrapper
+import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
 import com.br.cassioferrazzo.hotmarttest.data.api.locations.LocationRepository
+import com.br.cassioferrazzo.hotmarttest.data.api.locations.model.toLocations
 import com.br.cassioferrazzo.hotmarttest.domain.locations.model.Location
 
 class LocationsService(
@@ -13,20 +13,11 @@ class LocationsService(
         when (val locationWrap = locationRepository.getLocations()) {
             is ResultWrapper.Success -> {
                 return ResultWrapper.Success(
-                    locationWrap.value.locationResponses.map {
-                        Location(
-                            it.id,
-                            it.name,
-                            it.review,
-                            it.type
-                        )
-                    }
+                    locationWrap.value.toLocations()
                 )
             }
             is ResultWrapper.Error -> return locationWrap
-            is ResultWrapper.EmptyResponseError -> return locationWrap
-            is ResultWrapper.UnknownError -> return locationWrap
         }
-        return ResultWrapper.UnknownError
+        return ResultWrapper.unknownError
     }
 }

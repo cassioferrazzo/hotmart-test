@@ -1,6 +1,6 @@
 package com.br.cassioferrazzo.hotmarttest.data.api.locations
 
-import com.br.cassioferrazzo.hotmarttest.data.ResultWrapper
+import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
 import com.br.cassioferrazzo.hotmarttest.data.api.locations.model.LocationsResponse
 
 class LocationRepositoryImpl(private val locationsApi: LocationsApi) : LocationRepository() {

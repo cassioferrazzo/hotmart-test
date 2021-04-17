@@ -1,4 +1,6 @@
-import com.br.cassioferrazzo.hotmarttest.data.ResultWrapper
+package com.br.cassioferrazzo.hotmarttest.domain.locations
+
+import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
 import com.br.cassioferrazzo.hotmarttest.domain.locations.model.Location
 
 interface LocationsServiceUseCase {
