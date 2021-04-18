@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class Service {
 
-    private val baseURL = "https://hotmart-mobile-app.herokuapp.com"
+    private val baseURL = "https://hotmart-mobile-app.herokuapp.com/"
 
     fun <T> createService(apiClass: Class<T>): T {
         return retrofit.create(apiClass)

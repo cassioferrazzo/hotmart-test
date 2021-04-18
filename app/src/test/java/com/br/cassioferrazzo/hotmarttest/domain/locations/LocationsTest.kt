@@ -17,7 +17,7 @@ class LocationsTest {
     private val locationResponse = LocationResponse(
         id = 1,
         name = "Sample Location",
-        review = 3.9,
+        review = 3.9f,
         type = "UNKNOWN",
     )
 

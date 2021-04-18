@@ -2,6 +2,7 @@ package com.br.cassioferrazzo.hotmarttest.data
 
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
+import com.google.gson.JsonSyntaxException
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -22,6 +23,7 @@ abstract class BaseRepository {
             return when (exception) {
                 is IOException -> ResultWrapper.networkError
                 is HttpException -> ResultWrapper.Error(exception.toResponseError())
+                is JsonSyntaxException -> ResultWrapper.parsingError
                 else -> ResultWrapper.unknownError
             }
         }

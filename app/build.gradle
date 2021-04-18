@@ -58,6 +58,7 @@ dependencies {
 
     def okHttpVersion = "4.9.1"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 
     def koin_version = "2.2.2"
     implementation "org.koin:koin-android:$koin_version"
@@ -67,6 +68,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 
     def mockito_version='3.9.0'
     testImplementation "org.mockito:mockito-core:$mockito_version"

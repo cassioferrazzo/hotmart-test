@@ -7,10 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.data.model.ResultWrapper
 import com.br.cassioferrazzo.hotmarttest.domain.locations.LocationsServiceUseCase
-import com.br.cassioferrazzo.hotmarttest.domain.locations.model.toUiModel
 import com.br.cassioferrazzo.hotmarttest.ui.locations.model.LocationUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 
 class LocationsViewModel(
     private val locationsService: LocationsServiceUseCase
@@ -29,7 +29,13 @@ class LocationsViewModel(
             is ResultWrapper.Success -> {
                 locationsMutableLiveData.postValue(
                     locationWrap.value.map {
-                        it.toUiModel()
+                        LocationUiModel(
+                            id = it.id,
+                            name = it.name,
+                            review = it.review,
+                            reviewText = DecimalFormat("#.#").format(it.review),
+                            type = it.type
+                        )
                     }
                 )
             }

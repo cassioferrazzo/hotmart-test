@@ -15,5 +15,9 @@ sealed class ResultWrapper<out T> {
         val unknownError = Error(
             ResponseError(statusCode = UNKNOWN_ERROR)
         )
+
+        val parsingError = Error(
+            ResponseError(statusCode = PARSING_ERROR)
+        )
     }
 }
