@@ -5,7 +5,7 @@ import com.br.cassioferrazzo.hotmarttest.domain.locations.model.Location
 data class LocationResponse(
     val id: Int,
     val name: String,
-    val review: Double,
+    val review: Float,
     val type: String,
 )
 

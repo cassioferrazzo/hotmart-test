@@ -33,6 +33,8 @@ class LocationsViewModel(
                     }
                 )
             }
+            is ResultWrapper.Error ->
+                locationsErrorRequestLiveData.postValue(locationWrap.responseError)
         }
     }
 
