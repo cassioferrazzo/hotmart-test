@@ -14,13 +14,3 @@ data class LocationDetailResponse(
     @SerializedName("adress")
     val address: String
 )
-fun LocationDetailResponse.toLocationDetail() = LocationDetail(
-    id = this.id,
-    name = this.name,
-    review = this.review,
-    type = this.type,
-    about = this.about,
-    schedule = this.schedule,
-    phone = this.phone,
-    address = this.address
-)

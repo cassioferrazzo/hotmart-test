@@ -10,5 +10,10 @@
         android:name="com.br.cassioferrazzo.hotmarttest.ui.locations.LocationsFragment"
         android:label="@string/title_home"
         tools:layout="@layout/locations_fragment" />
+    <activity
+        android:id="@+id/navigation_activity_location_details"
+        android:name="com.br.cassioferrazzo.hotmarttest.ui.locations.LocationDetailActivity"
+        android:label="@string/title_detail_location"
+        tools:layout="@layout/activity_location_detail" />
 
 </navigation>

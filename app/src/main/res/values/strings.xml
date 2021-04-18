@@ -3,4 +3,13 @@
     <string name="title_home">Home</string>
     <string name="title_map">Mapas</string>
     <string name="title_profile">Conta</string>
+    <string name="title_detail_location">Detalhes</string>
+
+    <string name="monday_abbreviation_string">seg</string>
+    <string name="tuesday_abbreviation_string">ter</string>
+    <string name="wednesday_abbreviation_string">qua</string>
+    <string name="thursday_abbreviation_string">qui</string>
+    <string name="friday_abbreviation_string">sex</string>
+    <string name="saturday_abbreviation_string">sab</string>
+    <string name="sunday_abbreviation_string">dom</string>
 </resources>

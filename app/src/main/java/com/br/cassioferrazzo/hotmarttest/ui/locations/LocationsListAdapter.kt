@@ -7,7 +7,8 @@ import com.br.cassioferrazzo.hotmarttest.databinding.FragmentLocationItemBinding
 import com.br.cassioferrazzo.hotmarttest.ui.locations.model.LocationUiModel
 
 class LocationsListAdapter(
-    private val locations: List<LocationUiModel>
+    private val locations: List<LocationUiModel>,
+    private val onClickListener: LocationsFragment.OnLocationClickListener
 ) : RecyclerView.Adapter<LocationsListAdapter.LocationsViewHodler>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHodler {
@@ -34,6 +35,7 @@ class LocationsListAdapter(
             binding.tvName.text = locationUiModel.name
             binding.tvType.text = locationUiModel.type
             binding.tvRating.text = locationUiModel.reviewText
+            binding.cvLocation.setOnClickListener { onClickListener.onClick(locationUiModel) }
         }
     }
 }

@@ -23,6 +23,6 @@ val mainModule = module {
         LocationsService(get())
     }
     viewModel {
-        LocationsViewModel(get())
+        LocationsViewModel(get(), get())
     }
 }
