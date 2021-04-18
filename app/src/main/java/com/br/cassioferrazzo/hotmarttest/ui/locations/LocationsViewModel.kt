@@ -1,6 +1,7 @@
 package com.br.cassioferrazzo.hotmarttest.ui.locations
 
 import android.app.Application
+import android.content.res.Resources
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,8 @@ class LocationsViewModel(
     application: Application,
     private val locationsService: LocationsServiceUseCase
 ) : AndroidViewModel(application) {
+
+    private val resources: Resources by lazy { getApplication<Application>().resources }
 
     private val locationsMutableLiveData = MutableLiveData<List<LocationUiModel>>()
     val locationsLiveData: LiveData<List<LocationUiModel>>
@@ -83,17 +86,28 @@ class LocationsViewModel(
 
     private fun convertScheduleToListString(schedules: List<Schedule>): List<String> {
         val scheduleStrings = ArrayList<String>()
-        val groupedSchedule = schedules.groupBy { "${it.open} às ${it.close}" }
+        val groupedSchedule = schedules.groupBy {
+            resources.getString(
+                R.string.hours_between_format,
+                it.open,
+                it.close
+            )
+        }
         groupedSchedule.forEach {
             val firstDayStr = convertDayTypeToString(it.value.first().dayType)
             val lastDayStr = convertDayTypeToString(it.value.last().dayType)
-            scheduleStrings.add("$firstDayStr a $lastDayStr: ${it.key}")
+            val formatedString = resources.getString(
+                R.string.days_between_format,
+                firstDayStr,
+                lastDayStr
+            )
+            scheduleStrings.add("$formatedString: ${it.key}")
         }
         return scheduleStrings
     }
 
     private fun convertDayTypeToString(dayType: DayOfWeekType): String {
-        val resources = getApplication<Application>().resources
+
         return when (dayType) {
             DayOfWeekType.MONDAY -> {
                 resources.getString(R.string.monday_abbreviation_string)

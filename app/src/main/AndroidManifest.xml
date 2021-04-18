@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotmartTest">
-        <activity android:name=".ui.locations.LocationDetailActivity"></activity>
+        <activity
+            android:name=".ui.locations.LocationDetailActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name">
