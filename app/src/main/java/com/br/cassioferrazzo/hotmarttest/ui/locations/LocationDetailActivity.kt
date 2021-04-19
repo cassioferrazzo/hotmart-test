@@ -1,10 +1,13 @@
 package com.br.cassioferrazzo.hotmarttest.ui.locations
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.navArgs
+import com.br.cassioferrazzo.hotmarttest.R
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.databinding.ActivityLocationDetailBinding
 import com.br.cassioferrazzo.hotmarttest.ui.ErrorHandler
@@ -45,15 +48,38 @@ class LocationDetailActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+        binding.toolbar.setOnMenuItemClickListener { onMenuItemClickListener(it) }
         setContentView(binding.root)
         viewModel.locationDetailLiveData.observe(this, locationDetailObserver)
         viewModel.locationDetailErrorLiveData.observe(this, locationDetailErrorObserver)
         loadLocationDetail()
     }
 
-    private fun loadLocationDetail(){
+    private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
+        return when (menuItem.itemId) {
+            R.id.menu_share -> {
+                share()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun loadLocationDetail() {
         loadingHandler.showLoading()
         viewModel.getLocationDetail(locationId)
+    }
+
+    private fun share() {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.share_text))
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.app_name))
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     companion object {

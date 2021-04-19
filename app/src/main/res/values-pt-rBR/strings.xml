@@ -26,5 +26,6 @@
     <string name="api_general_error">Encontramos problemas na comunicação com o servidor. Verifique sua conexão com a internet e tente novamente.</string>
     <string name="response_error">Não foi possível executar esta requisição. Código: %d - Mensagem: %s</string>
     <string name="loading_text">Carregando</string>
+    <string name="share_text">Exemplo de texto para compartilhar</string>
 
 </resources>
