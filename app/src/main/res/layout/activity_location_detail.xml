@@ -31,6 +31,7 @@
                 style="@style/Widget.App.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
                 android:background="@android:color/transparent"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/location_detail_menu"
@@ -94,6 +95,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="3.8"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
                 </LinearLayout>
             </LinearLayout>

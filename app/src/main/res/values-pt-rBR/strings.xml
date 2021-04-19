@@ -19,5 +19,11 @@
     <string name="pictures">FOTOS</string>
     <string name="about">SOBRE</string>
     <string name="reviews">REVIEWS</string>
+    <string name="error">ERRO</string>
+    <string name="try_again">TENTAR NOVAMENTE</string>
+    <string name="return_string">VOLTAR</string>
+
+    <string name="api_general_error">Encontramos problemas na comunicação com o servidor. Verifique sua conexão com a internet e tente novamente.</string>
+    <string name="response_error">Não foi possível executar esta requisição. Código: %d - Mensagem: %s</string>
 
 </resources>
