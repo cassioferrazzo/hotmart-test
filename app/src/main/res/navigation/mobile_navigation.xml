@@ -9,7 +9,11 @@
         android:id="@+id/navigation_locations"
         android:name="com.br.cassioferrazzo.hotmarttest.ui.locations.LocationsFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/locations_fragment" />
+        tools:layout="@layout/locations_fragment" >
+        <action
+            android:id="@+id/action_navigato_locations_to_location_details"
+            app:destination="@id/navigation_activity_location_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_map"
@@ -27,6 +31,10 @@
         android:id="@+id/navigation_activity_location_details"
         android:name="com.br.cassioferrazzo.hotmarttest.ui.locations.LocationDetailActivity"
         android:label="@string/title_detail_location"
-        tools:layout="@layout/activity_location_detail" />
+        tools:layout="@layout/activity_location_detail">
+        <argument
+            android:name="locationId"
+            app:argType="long" />
+    </activity>
 
 </navigation>

@@ -11,7 +11,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.br.cassioferrazzo.hotmarttest.R
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.databinding.LocationsFragmentBinding
 import com.br.cassioferrazzo.hotmarttest.ui.locations.model.LocationUiModel
@@ -22,9 +21,12 @@ class LocationsFragment : Fragment() {
     private lateinit var binding: LocationsFragmentBinding
     private val navController: NavController by lazy { findNavController() }
     private val viewModel: LocationsViewModel by viewModel()
+
     private val onItemLocationClick = object : OnLocationClickListener {
         override fun onClick(location: LocationUiModel) {
-            navController.navigate(R.id.navigation_activity_location_details)
+            val directions =
+                LocationsFragmentDirections.actionNavigatoLocationsToLocationDetails(location.id)
+            navController.navigate(directions)
         }
 
     }

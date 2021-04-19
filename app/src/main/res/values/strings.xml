@@ -15,4 +15,8 @@
 
     <string name="days_between_format">%s to %s</string>
     <string name="hours_between_format">%s - %s</string>
+    <string name="share">Share</string>
+    <string name="pictures">PICTURES</string>
+    <string name="about">ABOUT</string>
+    <string name="reviews">REVIEWS</string>
 </resources>

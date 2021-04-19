@@ -74,7 +74,7 @@ class LocationsViewModel(
                             about = this.about,
                             schedules = convertScheduleToListString(this.schedules),
                             phone = this.phone,
-                            address = this.phone
+                            address = this.address
                         )
                     )
                 }

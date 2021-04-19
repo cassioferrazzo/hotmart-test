@@ -15,5 +15,9 @@
 
     <string name="days_between_format">%s a %s</string>
     <string name="hours_between_format">%s à %s</string>
+    <string name="share">Compartilhar</string>
+    <string name="pictures">FOTOS</string>
+    <string name="about">SOBRE</string>
+    <string name="reviews">REVIEWS</string>
 
 </resources>
