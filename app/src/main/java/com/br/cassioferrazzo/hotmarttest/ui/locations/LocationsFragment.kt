@@ -10,23 +10,26 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.br.cassioferrazzo.hotmarttest.R
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.databinding.LocationsFragmentBinding
 import com.br.cassioferrazzo.hotmarttest.ui.ErrorHandler
+import com.br.cassioferrazzo.hotmarttest.ui.LoadingHandler
 import com.br.cassioferrazzo.hotmarttest.ui.locations.model.LocationUiModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationsFragment : Fragment() {
-
     private lateinit var binding: LocationsFragmentBinding
     private val navController by lazy { findNavController() }
     private val errorHandler by lazy { ErrorHandler(requireContext()) }
+    private val loadingHandler by lazy { LoadingHandler(requireContext()) }
     private val viewModel: LocationsViewModel by viewModel()
 
     private val onItemLocationClick = object : OnLocationClickListener {
         override fun onClick(location: LocationUiModel) {
             val directions =
-                    LocationsFragmentDirections.actionNavigatoLocationsToLocationDetails(location.id)
+                LocationsFragmentDirections.actionNavigatoLocationsToLocationDetails(location.id)
             navController.navigate(directions)
         }
     }
@@ -34,10 +37,12 @@ class LocationsFragment : Fragment() {
     private val locationsObserver = Observer<List<LocationUiModel>> {
         Log.i(TAG, "$it")
         binding.rvLocations.adapter = LocationsListAdapter(it, onItemLocationClick)
+        loadingHandler.hideLoading()
     }
 
     private val locationErrorObserver = Observer<ResponseError> {
         Log.i(TAG, "$it")
+        loadingHandler.hideLoading()
         errorHandler.handleError(it, ::loadLocations)
     }
 
@@ -61,6 +66,7 @@ class LocationsFragment : Fragment() {
     }
 
     private fun loadLocations() {
+        loadingHandler.showLoading()
         viewModel.getLocations()
     }
 

@@ -8,6 +8,7 @@ import androidx.navigation.navArgs
 import com.br.cassioferrazzo.hotmarttest.data.model.ResponseError
 import com.br.cassioferrazzo.hotmarttest.databinding.ActivityLocationDetailBinding
 import com.br.cassioferrazzo.hotmarttest.ui.ErrorHandler
+import com.br.cassioferrazzo.hotmarttest.ui.LoadingHandler
 import com.br.cassioferrazzo.hotmarttest.ui.locations.model.LocationDetailUiModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,6 +17,7 @@ class LocationDetailActivity : AppCompatActivity() {
     private val arguments by navArgs<LocationDetailActivityArgs>()
     private val locationId by lazy { arguments.locationId }
     private val errorHandler by lazy { ErrorHandler(this@LocationDetailActivity) }
+    private val loadingHandler by lazy { LoadingHandler(this@LocationDetailActivity) }
     private val viewModel: LocationsViewModel by viewModel()
 
     private val locationDetailObserver = Observer<LocationDetailUiModel> {
@@ -28,10 +30,12 @@ class LocationDetailActivity : AppCompatActivity() {
         binding.tvPhone.text = it.phone
         val schedulesStr = it.schedules.joinToString(separator = "\n")
         binding.tvSchedule.text = schedulesStr
+        loadingHandler.hideLoading()
     }
 
     private val locationDetailErrorObserver = Observer<ResponseError> {
         Log.i(TAG, "$it")
+        loadingHandler.hideLoading()
         errorHandler.handleError(it, ::loadLocationDetail, ::onBackPressed)
     }
 
@@ -48,6 +52,7 @@ class LocationDetailActivity : AppCompatActivity() {
     }
 
     private fun loadLocationDetail(){
+        loadingHandler.showLoading()
         viewModel.getLocationDetail(locationId)
     }
 
