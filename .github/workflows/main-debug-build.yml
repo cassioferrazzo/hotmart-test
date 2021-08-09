@@ -27,9 +27,7 @@ jobs:
       
     ## Gradle Build ##      
       - name: Gradle Build
-        uses: gradle/gradle-build-action@v1.3.3
-        with:
-          arguments: build
+        run: ./gradlew --no-daemon build
         
     ## Upload the APK ##
       - name: Upload APK
