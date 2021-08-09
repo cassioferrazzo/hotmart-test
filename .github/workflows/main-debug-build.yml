@@ -20,15 +20,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-          
-    ## Setup Android SDK ##
-    ##  - name: Setup Android SDK
-    ##    uses: android-actions/setup-android@v2
-      
-    ## Gradle Build ##      
-    ##  - name: Gradle Build
-    ##    run: ./gradlew --no-daemon build
-        
+
     ## Gradle Build ##      
       - name: Gradle Build
         uses: gradle/gradle-build-action@v1.3.3
