@@ -46,7 +46,7 @@ jobs:
         uses: gradle/gradle-build-action@v1.3.3
         with:
           arguments: build
-          build-root-directory: hotmart-test/hotmart-test
+          build-root-directory: ./hotmart-test
         
     ## Upload the APK ##
       - name: Upload APK
