@@ -14,6 +14,8 @@ jobs:
     ## Project checkout ##
       - name: Project checkout
         uses: actions/checkout@v2.3.4
+        with:
+          path: hotmart-test
     
     ## Dependency checkout ##
       - name: Dependency checkout
@@ -33,6 +35,9 @@ jobs:
         run: |
          pwd
          ls -la
+         cd hotmart-test
+         pwd
+         ls -la
          chmod +x ./prepare-env.sh
          ./prepare-env.sh
 
@@ -41,11 +46,11 @@ jobs:
         uses: gradle/gradle-build-action@v1.3.3
         with:
           arguments: build
+          build-root-directory: hotmart-test/hotmart-test
         
     ## Upload the APK ##
       - name: Upload APK
         uses: actions/upload-artifact@v2.2.4
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
-      
+          path: hotmart-test/app/build/outputs/apk/debug/app-debug.apk
