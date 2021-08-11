@@ -1,11 +1,11 @@
 #!/bin/bash
 
 echo ">>>>>>>>>> executando comando <<<<<<<<"
-DIR="../externar-script"
+DIR="../external-script/"
 if [ -d "$DIR" ]; then
-  echo "diretório existe ${DIR}..."
-  echo "NVM Version: "
-  nvm --version
+  echo "diretório existe ${DIR}"
+  echo "lendo arquivo ${DIR}file.txt
+  cat "${DIR}file.txt"
   echo "Node Version: "
   node -v
   
