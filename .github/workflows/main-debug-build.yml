@@ -40,7 +40,13 @@ jobs:
          ls -la
          chmod +x ./prepare-env.sh
          ./prepare-env.sh
-
+         
+    ## Execute unit tests
+      - name: Unit Tests
+        run: |
+         cd hotmart-test 
+         ./gradlew testDebugUnitTest
+    
     ## Gradle Build ##      
       - name: Gradle Build
         run: |
