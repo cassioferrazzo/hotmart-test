@@ -42,17 +42,17 @@ jobs:
          ./prepare-env.sh
          
     ## Execute unit tests
-#      - name: Unit Tests
-#        run: |
-#         cd hotmart-test 
-#         ./gradlew testDebugUnitTest
+      - name: Unit Tests
+        run: |
+         cd hotmart-test 
+         ./gradlew testDebugUnitTest
          
     ## Test Report
-#      - name: Test Report
-#        uses: asadmansr/android-test-report-action@v1.2.0
-#        if: ${{ always() }}
-#        with:
-#         path: hotmart-test/app/build/test-results
+      - name: Test Report
+        uses: asadmansr/android-test-report-action@v1.2.0
+        if: ${{ always() }}
+        with:
+         path: hotmart-test/app/build/test-results
         
     ## Gradle Build ##      
       - name: Gradle Build
