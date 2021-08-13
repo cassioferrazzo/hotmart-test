@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     
     ## Project checkout ##
@@ -41,6 +41,14 @@ jobs:
          chmod +x ./prepare-env.sh
          ./prepare-env.sh
          
+    ## install sdkman
+      - name: Insall SDKMAN
+        run: curl -s "https://get.sdkman.io" | bash
+        
+    ## install Gradle
+      - name: Install Gradle
+        run: sdk install gradle 7.1.1
+       
     ## Execute unit tests
       - name: Unit Tests
         run: |
