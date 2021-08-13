@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     
     ## Project checkout ##
@@ -25,10 +25,10 @@ jobs:
           path: external-script
           
     ## Java JDK setup ##    
-      - name: Set up JDK 1.8
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: '11'
           
     ## Execute Dependency Scripts ##
       - name: Dependency Scripts
@@ -42,11 +42,18 @@ jobs:
          ./prepare-env.sh
          
     ## Execute unit tests
-      - name: Unit Tests
-        run: |
-         cd hotmart-test 
-         ./gradlew testDebugUnitTest
-    
+#      - name: Unit Tests
+#        run: |
+#         cd hotmart-test 
+#         ./gradlew testDebugUnitTest
+         
+    ## Test Report
+#      - name: Test Report
+#        uses: asadmansr/android-test-report-action@v1.2.0
+#        if: ${{ always() }}
+#        with:
+#         path: hotmart-test/app/build/test-results
+        
     ## Gradle Build ##      
       - name: Gradle Build
         run: |
