@@ -41,26 +41,18 @@ jobs:
          chmod +x ./prepare-env.sh
          ./prepare-env.sh
          
-    ## install Gradle
-#      - name: Insall SDKMAN
-#        run: |
-#         curl -s "https://get.sdkman.io" | bash
-#         source "$HOME/.sdkman/bin/sdkman-init.sh"
-#         sdk version
-#         sdk install gradle 7.1.1
-       
     ## Execute unit tests
-      - name: Unit Tests
-        run: |
-         cd hotmart-test 
-         ./gradlew testDebugUnitTest
+#      - name: Unit Tests
+#        run: |
+#         cd hotmart-test 
+#         ./gradlew testDebugUnitTest
          
     ## Test Report
-      - name: Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
-        if: ${{ always() }}
-        with:
-         path: hotmart-test/app/build/test-results
+#      - name: Test Report
+#        uses: asadmansr/android-test-report-action@v1.2.0
+#        if: ${{ always() }}
+#        with:
+#         path: hotmart-test/app/build/test-results
         
     ## Gradle Build ##      
       - name: Gradle Build
