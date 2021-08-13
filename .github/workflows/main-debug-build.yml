@@ -43,7 +43,10 @@ jobs:
          
     ## install sdkman
       - name: Insall SDKMAN
-        run: curl -s "https://get.sdkman.io" | bash
+        run: |
+         curl -s "https://get.sdkman.io" | bash
+         source "$HOME/.sdkman/bin/sdkman-init.sh"
+         sdk version
         
     ## install Gradle
       - name: Install Gradle
