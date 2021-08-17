@@ -55,9 +55,8 @@ jobs:
           target: default
           arch: x86
           profile: Nexus 6
-          run: |
-           cd hotmart-test
-           ./gradlew connectedCheck --stacktrace
+          working-directory: hotmart-test
+          script: ./gradlew connectedCheck --stacktrace
         
     ## Gradle Build ##      
       - name: Gradle Build
