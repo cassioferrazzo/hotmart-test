@@ -45,6 +45,11 @@ class LocationsTest {
         )
     }
 
+    @Test
+    fun simulateAnErrorForCITest(){
+        assertTrue(false)
+    }
+
     private fun getLocationsSuccess(): ResultWrapper<LocationsResponse> {
         return ResultWrapper.Success(LocationsResponse(listOf(locationResponse)))
     }
