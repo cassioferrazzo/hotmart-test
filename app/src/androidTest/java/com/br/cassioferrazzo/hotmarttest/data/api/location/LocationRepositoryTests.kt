@@ -73,10 +73,6 @@ class LocationRepositoryTests {
         }
     }
 
-    @Test
-    fun simulateAnErrorForCITest(){
-        assertTrue(false)
-    }
     private fun MockWebServer.enqueueResponse(fileResourceId: Int, code: Int) {
         val inputStream = context.resources.openRawResource(fileResourceId)
 
