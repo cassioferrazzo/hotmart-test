@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     
     ## Project checkout ##
@@ -46,14 +46,7 @@ jobs:
         run: |
          cd hotmart-test 
          ./gradlew testDebugUnitTest
-         
-    ## Test Report
-      - name: Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
-        if: ${{ always() }}
-        with:
-         path: hotmart-test/app/build/test-results
-         
+                  
     ## Execute Instrumented Tests
       - name: Instrumented Tests
         uses: ReactiveCircus/android-emulator-runner@v2.19.1
@@ -62,7 +55,9 @@ jobs:
           target: default
           arch: x86
           profile: Nexus 6
-          script: ./gradlew connectedCheck --stacktrace
+          run: |
+           cd hotmart-test
+           ./gradlew connectedCheck --stacktrace
         
     ## Gradle Build ##      
       - name: Gradle Build
