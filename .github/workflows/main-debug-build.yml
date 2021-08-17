@@ -41,7 +41,7 @@ jobs:
          chmod +x ./prepare-env.sh
          ./prepare-env.sh
          
-    ## Execute unit tests
+    ## Execute Unit Tests
       - name: Unit Tests
         run: |
          cd hotmart-test 
@@ -53,6 +53,16 @@ jobs:
         if: ${{ always() }}
         with:
          path: hotmart-test/app/build/test-results
+         
+    ## Execute Instrumented Tests
+      - name: Instrumented Tests
+        uses: ReactiveCircus/android-emulator-runner@v2.19.1
+        with:
+          api-level: 23
+          target: default
+          arch: x86
+          profile: Nexus 6
+          script: ./gradlew connectedCheck --stacktrace
         
     ## Gradle Build ##      
       - name: Gradle Build
