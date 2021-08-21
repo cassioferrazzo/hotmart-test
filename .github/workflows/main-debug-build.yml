@@ -71,10 +71,21 @@ jobs:
         with:
           arguments: assembleRelease
           build-root-directory: ./hotmart-test/
+          
+      - name: Sign APK
+        id: sign_app
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: hotmart-test/app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY_BASE64 }}
+          alias: ${{ secrets.SIGNING_ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}          
+          
         
     ## Upload the APK ##
       - name: Upload APK
         uses: actions/upload-artifact@v2.2.4
         with:
           name: app
-          path: hotmart-test/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}         
