@@ -44,21 +44,21 @@ jobs:
          ./prepare-env.sh
          
     ## Execute Unit Tests
-      - name: Unit Tests
-        run: |
-         cd hotmart-test 
-         ./gradlew testDebugUnitTest
+#      - name: Unit Tests
+#        run: |
+#         cd hotmart-test 
+#         ./gradlew testDebugUnitTest
                   
     ## Execute Instrumented Tests
-      - name: Instrumented Tests
-        uses: ReactiveCircus/android-emulator-runner@v2.19.1
-        with:
-          api-level: 23
-          target: default
-          arch: x86
-          profile: Nexus 6
-          working-directory: hotmart-test
-          script: ./gradlew connectedCheck --stacktrace
+#      - name: Instrumented Tests
+#        uses: ReactiveCircus/android-emulator-runner@v2.19.1
+#        with:
+#          api-level: 23
+#          target: default
+#          arch: x86
+#          profile: Nexus 6
+#          working-directory: hotmart-test
+#          script: ./gradlew connectedCheck --stacktrace
         
     ## Gradle Build ##      
 #      - name: Gradle Build
@@ -69,7 +69,7 @@ jobs:
       - name: Gradle Build
         uses: gradle/gradle-build-action@v1.4.1
         with:
-          arguments: build
+          arguments: assembleRelease
           build-root-directory: ./hotmart-test/
         
     ## Upload the APK ##
@@ -77,4 +77,4 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           name: app
-          path: hotmart-test/app/build/outputs/apk/debug/app-debug.apk
+          path: hotmart-test/app/build/outputs/apk/release/app-release-unsigned.apk
