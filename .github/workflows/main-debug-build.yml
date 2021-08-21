@@ -1,12 +1,10 @@
 name: Android Debug Build
 
 on:
-  pull_request:
-    branches: [ master ]
   push:
     branches: [ master ]
     tags: 
-     - "loyal*"
+     - "*"
 
 jobs:
   build:
@@ -77,6 +75,15 @@ jobs:
           alias: ${{ secrets.SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}                    
+        
+    ## Firebase App Distribution
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+          appId: ${{ secrets.APP_ID_FIREBASE }}
+          file: ${{steps.sign_app.outputs.signedReleaseFile}}
+          token: ${{ secrets.FIREBASE_CI_TOKEN }}
+          groups: owner          
         
     ## Upload the APK ##
       - name: Upload APK
