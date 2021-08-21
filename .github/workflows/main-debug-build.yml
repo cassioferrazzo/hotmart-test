@@ -44,35 +44,31 @@ jobs:
          ./prepare-env.sh
          
     ## Execute Unit Tests
-#      - name: Unit Tests
-#        run: |
-#         cd hotmart-test 
-#         ./gradlew testDebugUnitTest
+      - name: Unit Tests
+        run: |
+         cd hotmart-test 
+         ./gradlew testDebugUnitTest
                   
     ## Execute Instrumented Tests
-#      - name: Instrumented Tests
-#        uses: ReactiveCircus/android-emulator-runner@v2.19.1
-#        with:
-#          api-level: 23
-#          target: default
-#          arch: x86
-#          profile: Nexus 6
-#          working-directory: hotmart-test
-#          script: ./gradlew connectedCheck --stacktrace
+      - name: Instrumented Tests
+        uses: ReactiveCircus/android-emulator-runner@v2.19.1
+        with:
+          api-level: 23
+          target: default
+          arch: x86
+          profile: Nexus 6
+          working-directory: hotmart-test
+          script: ./gradlew connectedCheck --stacktrace
         
-    ## Gradle Build ##      
-#      - name: Gradle Build
-#        run: |
-#         cd hotmart-test
-#         ./gradlew assembleRelease
-        
-      - name: Gradle Build
+    ## Gradle Release Build ##              
+      - name: Gradle Release Build
         uses: gradle/gradle-build-action@v1.4.1
         with:
           arguments: assembleRelease
           build-root-directory: ./hotmart-test/
           
-      - name: Sign APK
+    ## Signing APK ##          
+      - name: Signing APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
@@ -80,8 +76,7 @@ jobs:
           signingKeyBase64: ${{ secrets.SIGNING_KEY_BASE64 }}
           alias: ${{ secrets.SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}          
-          
+          keyPassword: ${{ secrets.KEY_PASSWORD }}                    
         
     ## Upload the APK ##
       - name: Upload APK
